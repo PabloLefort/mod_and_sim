@@ -1,0 +1,7 @@
+.side-menu {
+    display: grid;
+    padding-right: 1rem;
+    grid-template-rows: 2rem 2rem 2rem 2rem;
+    justify-items: end;
+    align-items: center;
+}
