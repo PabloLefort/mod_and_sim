@@ -25,7 +25,7 @@ SECRET_KEY = 'x5%h*f(qc%x@%=&d@p=evf4l*k62*tal)x@lc*3%@cs@6c8uht'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*.herokuapp.com']
+ALLOWED_HOSTS = ['fathomless-taiga-22231.herokuapp.com']
 
 
 # Application definition
