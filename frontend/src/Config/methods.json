@@ -1,0 +1,35 @@
+{
+    "euler": [
+        {
+            "descriptor": "fn",
+            "type": "text",
+            "label": "dx/dt"
+        },
+        {
+            "descriptor": "t0",
+            "type": "text",
+            "label": "t0"
+        },
+        {
+            "descriptor": "x0",
+            "type": "text",
+            "label": "x0"
+        },
+        {
+            "descriptor": "h",
+            "type": "text",
+            "label": "h"
+        },
+        {
+            "descriptor": "n",
+            "type": "text",
+            "label": "n"
+        }
+    ],
+    "euler mejorado": [],
+    "runge-kutta": [],
+    "rectángulos": [],
+    "trapecios": [],
+    "simpson": [],
+    "montecarlo": []
+}

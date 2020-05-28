@@ -1,7 +1,14 @@
 .side-menu {
     display: grid;
     padding-right: 1rem;
-    grid-template-rows: 2rem 2rem 2rem 2rem;
+    grid-template-rows: 2rem auto;
     justify-items: end;
     align-items: center;
+}
+.side-menu h2 {
+    text-transform: capitalize;
+}
+.side-menu .dibujar {
+    margin-right: 25%;
+    margin-top: 10%;
 }

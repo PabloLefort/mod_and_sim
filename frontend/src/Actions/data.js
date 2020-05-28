@@ -11,7 +11,7 @@ export const Types = {
 
 export const seleccionarMetodo = ({metodo}) => ({
     type: Types.SELECCIONAR_METODO,
-    payload: {metodo}
+    payload: { metodo }
 })
 
 // function that returns an object literal 

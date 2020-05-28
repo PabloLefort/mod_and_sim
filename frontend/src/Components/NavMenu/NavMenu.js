@@ -1,19 +1,21 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './NavMenu.css';
+import methods from '../../Config/methods.json';
 
 class NavMenu extends Component {
   render() {
+    console.log(this.props.metodo);
+    let currentMethod = this.props.metodo;
+    let methodKeys = Object.keys(methods);
     return (
       <nav className="nav-menu">
-        <div><h1>PLOTTER</h1></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'EULER' })}>Euler</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'EULER MEJORADO' })}>Euler Mejorado</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'RUNGE-KUTTA' })}>Runge-Kutta</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'RECTANGULOS' })}>Rectángulos</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'TRAPECIOS' })}>Trapecios</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'SIMPSON' })}>Simpson</button></div>
-        <div><button onClick={() => this.props.seleccionarMetodo({ metodo: 'MONTECARLO' })}>Montecarlo</button></div>
+        <div className="app-title"><h1>Plotter - MyS</h1></div>
+        {methodKeys ? methodKeys.map((key) => 
+          <div key={key}>
+            <button className={key === currentMethod ? 'active' : ''} onClick={() => this.props.seleccionarMetodo({ metodo: key })}>{key}</button>
+          </div>) : 
+          <div class="nav-menu__loading">Loading...</div>
+        }
       </nav>);
   }
 }

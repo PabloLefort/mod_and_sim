@@ -1,10 +1,18 @@
 .nav-menu {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1.5fr repeat(7, 1fr) .25fr;
     grid-auto-rows: auto;
-    grid-gap: 1em;
+    grid-gap: 1px;
     align-items: center;
     text-align: center;
     background: white;
     height: 100%;
+    box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.75);
+}
+.nav-menu button {
+    padding: 5% 0;
+    width: 100%;
+}
+.nav-menu .app-title {
+    font-size: 2rem;
 }

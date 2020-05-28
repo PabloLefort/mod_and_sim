@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getDataRequest, seleccionarMetodo } from './Actions/data'; 
+import { getDataRequest, seleccionarMetodo, createPostRequest } from './Actions/data'; 
 
 import './App.css';
 
 import NavMenu from './Components/NavMenu/NavMenu';
 import SideMenu from './Components/SideMenu/SideMenu';
-import Plotter from './Components/Plotter/Plotter';
+import Main from './Components/Main/Main';
 
 class App extends Component {
 
@@ -19,11 +19,11 @@ class App extends Component {
     return(
       <div className="app">
         <header className="app-header">
-          <NavMenu seleccionarMetodo={this.props.seleccionarMetodo.bind(this)}/>
+          <NavMenu metodo={this.props.metodo} seleccionarMetodo={this.props.seleccionarMetodo.bind(this)}/>
         </header>
         <main className="app-main">
-          <aside className="app-main__aside"><SideMenu metodo={this.props.metodo} /></aside>
-          <article className="app-main__article"><Plotter /></article>
+          <aside className="app-main__aside"><SideMenu metodo={this.props.metodo} dibujar={(params)=>this.props.createPostRequest(params)} /></aside>
+          <article className="app-main__article"><Main metodo={this.props.metodo} /></article>
         </main>
     </div>
     )
@@ -35,7 +35,8 @@ const mapStateToProps = (state) => {
   console.log("App State ->", state);
   return {
     data: state.data.test,
-    metodo: state.data.metodo
+    metodo: state.data.metodo,
+    posts: state.data.posts
   }
 }
-export default connect(mapStateToProps, { getDataRequest, seleccionarMetodo })(App)
+export default connect(mapStateToProps, { getDataRequest, seleccionarMetodo, createPostRequest })(App)
