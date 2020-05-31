@@ -16,20 +16,21 @@
             "label": "Posición (x0)"
         },
         {
-            "descriptor": "h",
+            "descriptor": "tf",
             "type": "text",
-            "label": "Valor del paso (h)"
+            "label": "Posición (tf)"
         },
         {
-            "descriptor": "tf_n",
+            "descriptor": "n_h",
             "type": "select",
             "label": "Análisis",
-            "options": [{ "value":"t", "text":"En un intervalo (t0 -> tf)"}, { "value":"n", "text":"Por cantidad de pasos (n)"}]
+            "options": [{ "value":"n", "text":"Por cantidad de pasos (n)"}, { "value":"h", "text":"Por tamaño del paso (h)"}],
+            "linked": "n_h_val"
         },
         {
-            "descriptor": "tf_n_val",
+            "descriptor": "n_h_val",
             "type": "text",
-            "label": "tf/n"
+            "label": "n"
         }
     ],
     "euler mejorado": [
@@ -49,20 +50,21 @@
             "label": "Posición (x0)"
         },
         {
-            "descriptor": "h",
+            "descriptor": "tf",
             "type": "text",
-            "label": "Valor del paso (h)"
+            "label": "Posición (tf)"
         },
         {
-            "descriptor": "tf_n",
+            "descriptor": "n_h",
             "type": "select",
             "label": "Análisis",
-            "options": [{ "value":"t", "text":"En un intervalo (t0 -> tf)"}, { "value":"n", "text":"Por cantidad de pasos (n)"}]
+            "options": [{ "value":"n", "text":"Por cantidad de pasos (n)"}, { "value":"h", "text":"Por tamaño del paso (h)"}],
+            "linked": "n_h_val"
         },
         {
-            "descriptor": "tf_n_val",
+            "descriptor": "n_h_val",
             "type": "text",
-            "label": "tf/n"
+            "label": "n"
         }
     ],
     "runge-kutta": [

@@ -30,7 +30,9 @@ class Plotter extends Component {
       graphType: 'polyline',
       points: points
     }];
-    functionPlot(plot)
+    if (points.length) {
+      functionPlot(plot)
+    }
 		return (
 		<div className="graph-container">
 			<div className="graph-title"><h2>Solución Aproximada </h2></div>

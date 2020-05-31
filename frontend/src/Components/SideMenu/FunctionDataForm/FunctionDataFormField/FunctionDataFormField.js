@@ -7,6 +7,9 @@ class FunctionDataFormField extends Component {
       disabled: true,
     };
   }
+  handleSelect(event) {
+    document.getElementsByName(this.props.data.linked)[0].previousSibling.innerText = event.target.value;
+  }
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -17,9 +20,9 @@ class FunctionDataFormField extends Component {
     }
     return (
       <div><label>
-        {this.props.data.label}
+        <span>{this.props.data.label}</span> 
           {this.props.data.type === 'select' ? (
-            <select className={className}>
+            <select className={className} name={this.props.data.descriptor} onChange={this.handleSelect.bind(this)}>
               {this.props.data.options.map((option, index) => <option key={index} value={option.value}>{option.text}</option>)}
             </select>
           ) : <input className={className} type={this.props.data.type} name={this.props.data.descriptor} value={this.state.value} onChange={this.handleChange.bind(this)} /> 

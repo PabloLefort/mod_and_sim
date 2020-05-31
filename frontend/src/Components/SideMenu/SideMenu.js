@@ -16,6 +16,9 @@ class SideMenu extends Component {
       <div className="side-menu">
         <div><h2>Método Seleccionado: {this.props.metodo}</h2></div>
         <FunctionDataForm fields={menuFields} onSubmit={this.onSubmit.bind(this)}></FunctionDataForm>
+        <div className="functionDataForm__validacion">
+          <p className="functionDataForm__validacion-msg"></p>
+        </div>
       </div>
     );
   }

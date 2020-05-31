@@ -9,12 +9,13 @@ mock.onPost().reply((config) => {
     let resultado;
     let values = JSON.parse(config.data);
     console.log('data values', values);
+    debugger;
     switch(values.metodo) {
         case 'euler':
-            resultado = euler(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf_n_val), toNum(values.h));
+            resultado = euler(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');
             break;
         case 'euler mejorado':
-            resultado = eulerMejorado(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf_n_val), toNum(values.h));
+            resultado = eulerMejorado(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');
             break;
         case 'runge-kutta':
             // fn, t0, x0, tf, n

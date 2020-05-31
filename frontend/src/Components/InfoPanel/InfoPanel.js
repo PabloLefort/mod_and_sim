@@ -7,7 +7,7 @@ class InfoPanel extends Component {
     const resultado = this.props.resultado;
     return (
       <div className="info-panel">
-      <h3>InfoPanel</h3>
+      <h3>Tabla de Valores</h3>
       <div className="info-panel__box">
         <table className="info-panel__table" cellSpacing="0">
           <thead>
@@ -21,8 +21,8 @@ class InfoPanel extends Component {
             {resultado ? resultado.map((row, i) => 
             <tr key={i}>
               <td>{i}</td>
-              <td>{row.tn}</td>
-              <td>{row.xn}</td>
+              <td>{parseFloat(row.tn).toFixed(3)}</td>
+              <td>{parseFloat(row.xn).toFixed(3)}</td>
             </tr>
             ) : null }
           </tbody>

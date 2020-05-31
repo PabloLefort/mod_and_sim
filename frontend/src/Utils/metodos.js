@@ -1,8 +1,9 @@
 import { evaluate } from 'mathjs'
 
-export const euler = function metodoEuler(fn, t0, x0, tf, h) {
+export const euler = function metodoEuler(fn, t0, x0, tf, step, isN) {
     let resultado = [];
     let t=t0, x=x0;
+    let h = isN ? ((tf - t0) / parseFloat(step)) : step;
  
 	while ((t<tf && t0<tf) || (t>tf && t0>tf)) {
         console.log("\t" + t + "\t|\t" + x);
@@ -14,9 +15,10 @@ export const euler = function metodoEuler(fn, t0, x0, tf, h) {
 	return resultado;
 }
 
-export const eulerMejorado = function metodoEulerMejorado(fn, t0, x0, tf, h) {
+export const eulerMejorado = function metodoEulerMejorado(fn, t0, x0, tf, step, isN) {
     let resultado = [];
     let t=t0, x=x0;
+    let h = isN ? ((tf - t0) / parseFloat(step)) : step;
  
 	while ((t<tf && t0<tf) || (t>tf && t0>tf)) {
         console.log("\t" + t + "\t|\t" + x);
@@ -50,7 +52,6 @@ export const rungeKutta = function metodoRungeKutta(fn, t0, x0, tf, n) {
             
             resultado.push({ tn: vt[i], xn: vx[i] });
         }
-        // return { vt, vx }
     }
     rk4(fn, t0, x0, tf, n);
     return resultado;
