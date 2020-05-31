@@ -5,6 +5,18 @@
     justify-items: end;
     align-items: center;
 }
+.side-menu .functionDataForm {
+    display: grid;
+    grid-auto-rows: 1.5rem;
+    justify-items: end;
+    align-items: center;
+}
+.side-menu .functionDataForm .functionDataForm__input {
+    margin-left: .25rem;
+}
+.side-menu .functionDataForm select.functionDataForm__input {
+    border: 2px solid black;
+}
 .side-menu h2 {
     text-transform: capitalize;
 }

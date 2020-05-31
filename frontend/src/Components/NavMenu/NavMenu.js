@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { seleccionarMetodo } from '../../Actions/data';
 import './NavMenu.css';
 import methods from '../../Config/methods.json';
 
 class NavMenu extends Component {
+  constructor() {
+    super();
+    this.methodKeys = Object.keys(methods);
+  }
   render() {
-    console.log(this.props.metodo);
-    let currentMethod = this.props.metodo;
-    let methodKeys = Object.keys(methods);
+    
     return (
       <nav className="nav-menu">
         <div className="app-title"><h1>Plotter - MyS</h1></div>
-        {methodKeys ? methodKeys.map((key) => 
+        {this.methodKeys ? this.methodKeys.map((key) => 
           <div key={key}>
-            <button className={key === currentMethod ? 'active' : ''} onClick={() => this.props.seleccionarMetodo({ metodo: key })}>{key}</button>
+            <button className={key === this.props.metodo ? 'active' : ''} onClick={() => this.props.seleccionarMetodo({ metodo: key })}>{key}</button>
           </div>) : 
           <div class="nav-menu__loading">Loading...</div>
         }
       </nav>);
   }
 }
-export default NavMenu;
+
+const mapStateToProps = (state) => {
+  return {
+    metodo: state.data.metodo
+  }
+}
+
+export default connect(mapStateToProps, { seleccionarMetodo })(NavMenu)

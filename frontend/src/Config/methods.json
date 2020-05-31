@@ -3,31 +3,95 @@
         {
             "descriptor": "fn",
             "type": "text",
-            "label": "dx/dt"
+            "label": "f(t,x)"
         },
         {
             "descriptor": "t0",
             "type": "text",
-            "label": "t0"
+            "label": "Posición (t0)"
         },
         {
             "descriptor": "x0",
             "type": "text",
-            "label": "x0"
+            "label": "Posición (x0)"
         },
         {
             "descriptor": "h",
             "type": "text",
-            "label": "h"
+            "label": "Valor del paso (h)"
+        },
+        {
+            "descriptor": "tf_n",
+            "type": "select",
+            "label": "Análisis",
+            "options": [{ "value":"t", "text":"En un intervalo (t0 -> tf)"}, { "value":"n", "text":"Por cantidad de pasos (n)"}]
+        },
+        {
+            "descriptor": "tf_n_val",
+            "type": "text",
+            "label": "tf/n"
+        }
+    ],
+    "euler mejorado": [
+        {
+            "descriptor": "fn",
+            "type": "text",
+            "label": "f(t,x)"
+        },
+        {
+            "descriptor": "t0",
+            "type": "text",
+            "label": "Posición (t0)"
+        },
+        {
+            "descriptor": "x0",
+            "type": "text",
+            "label": "Posición (x0)"
+        },
+        {
+            "descriptor": "h",
+            "type": "text",
+            "label": "Valor del paso (h)"
+        },
+        {
+            "descriptor": "tf_n",
+            "type": "select",
+            "label": "Análisis",
+            "options": [{ "value":"t", "text":"En un intervalo (t0 -> tf)"}, { "value":"n", "text":"Por cantidad de pasos (n)"}]
+        },
+        {
+            "descriptor": "tf_n_val",
+            "type": "text",
+            "label": "tf/n"
+        }
+    ],
+    "runge-kutta": [
+        {
+            "descriptor": "fn",
+            "type": "text",
+            "label": "f(t,x)"
+        },
+        {
+            "descriptor": "t0",
+            "type": "text",
+            "label": "Posición (t0)"
+        },
+        {
+            "descriptor": "x0",
+            "type": "text",
+            "label": "Posición (x0)"
+        },
+        {
+            "descriptor": "tf",
+            "type": "text",
+            "label": "Posición (tf)"
         },
         {
             "descriptor": "n",
             "type": "text",
-            "label": "n"
+            "label": "Cantidad de pasos (n)"
         }
     ],
-    "euler mejorado": [],
-    "runge-kutta": [],
     "rectángulos": [],
     "trapecios": [],
     "simpson": [],

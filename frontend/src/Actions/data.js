@@ -3,16 +3,11 @@
 export const Types = {
     GET_DATA_REQUEST: 'get_data_request',
     GET_DATA_SUCCESS: 'get_data_success',
-    GET_POSTS_REQUEST: 'get_posts_request',
-    GET_POSTS_SUCCESS: 'get_posts_success',
-    CREATE_POST_REQUEST: 'create_post_request',
     SELECCIONAR_METODO: 'seleccionar_metodo',
+    APLICAR_METODO_REQUEST: 'aplicar_metodo_request',
+    APLICAR_METODO_SUCCESS: 'aplicar_metodo_success',
+    APLICAR_METODO_FAILURE: 'aplicar_metodo_failure',
 }
-
-export const seleccionarMetodo = ({metodo}) => ({
-    type: Types.SELECCIONAR_METODO,
-    payload: { metodo }
-})
 
 // function that returns an object literal 
 export const getDataRequest = () => ({
@@ -24,15 +19,22 @@ export const getDataSuccess = ({data}) => ({
     payload: { data }
 })
 
-// reading the posts
-export const getPostsRequest = () => ({
-    type: Types.GET_POSTS_REQUEST
+export const seleccionarMetodo = ({metodo}) => ({
+    type: Types.SELECCIONAR_METODO,
+    payload: { metodo }
 })
-export const getPostsSuccess = ({posts}) => ({
-    type: Types.GET_POSTS_SUCCESS,
-    payload: { posts }
+
+export const aplicarMetodo = ({ parametros, metodo }) => ({
+    type: Types.APLICAR_METODO_REQUEST,
+    payload: { parametros, metodo }
 })
-export const createPostRequest = ({post}) => ({
-    type: Types.CREATE_POST_REQUEST,
-    payload: {post}
+
+export const aplicarMetodoSucess = ({ resultado }) => ({
+    type: Types.APLICAR_METODO_SUCCESS,
+    payload: { resultado }
+})
+
+export const aplicarMetodoFailure = ({ error }) => ({
+    type: Types.APLICAR_METODO_FAILURE,
+    payload: { error }
 })

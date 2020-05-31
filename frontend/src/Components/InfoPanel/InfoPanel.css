@@ -1,3 +1,23 @@
 .info-panel {
+}
 
+.info-panel__box {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.info-panel__table {
+    border: solid 1px black;
+    table-layout: fixed;
+    width: 80%;
+}
+.info-panel__table tr th {
+    border-bottom: solid 2px black;
+}
+.info-panel__table tr td {
+    
+}
+.info-panel__table tr td:nth-child(odd), .info-panel__table tr th:nth-child(odd) {
+    background: #efefef;
 }
