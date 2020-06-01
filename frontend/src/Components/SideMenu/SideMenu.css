@@ -17,6 +17,24 @@
 .side-menu .functionDataForm select.functionDataForm__input {
     border: 2px solid black;
 }
+.side-menu .functionDataForm .not-valid:not(.empty) {
+    border: 2px solid red;
+}
+.side-menu .functionDataForm__validacion {
+    width: 80%;
+    text-align: center;
+    float: right;
+    margin: .5rem .5rem;
+    padding: .5rem;
+    color: red;
+    background: black;
+    border: solid 1px red;
+    border-radius: 6px;
+}
+.side-menu .functionDataForm__validacion.hidden {
+    display: none;
+}
+
 .side-menu h2 {
     text-transform: capitalize;
 }

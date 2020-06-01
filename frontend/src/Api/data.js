@@ -9,7 +9,6 @@ mock.onPost().reply((config) => {
     let resultado;
     let values = JSON.parse(config.data);
     console.log('data values', values);
-    debugger;
     switch(values.metodo) {
         case 'euler':
             resultado = euler(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');

@@ -4,29 +4,34 @@ class FunctionDataForm extends Component {
   constructor (){
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.errormsg = React.createRef();
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    //data: event.target[0];
     const data = new FormData(event.target);
-    // NOTE: you access FormData fields with `data.get(fieldName)`    
-    /*const [month, day, year] = data.get('birthdate').split('/');
-    const serverDate = `${year}-${month}-${day}`;
-    data.set('birthdate', serverDate);
-    data.set('username', data.get('username').toUpperCase());*/
-    
-    this.props.onSubmit(data);
+    let invalidFields = event.target.getElementsByClassName('not-valid');
+    if (!invalidFields.length) {
+      this.errormsg.current.classList.add('hidden');
+      this.props.onSubmit(data);
+    } else {
+      this.errormsg.current.classList.remove('hidden');
+    }
   }
   
   render(){
     return (
+      <div>
         <form className="functionDataForm" onSubmit={this.handleSubmit}>
         { this.props.fields ? this.props.fields.map((item, index) => 
             (<FunctionDataFormField key={index} data={item} />)
           ) : null }
         <input type="submit" value="Ver Solución" />
         </form>
+        <div ref={this.errormsg} className="functionDataForm__validacion hidden">
+          <p className="functionDataForm__validacion-msg">Verifique que los valores ingresados sean correctos.</p>
+        </div>
+      </div>
     );
   }
 };

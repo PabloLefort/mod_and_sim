@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 class FunctionDataFormField extends Component {
-  constructor (){
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       value: '',
-      disabled: true,
+      valid: !props.data.validation ? true : false // Si no tiene regex string de validación, es válido por defecto
     };
   }
   handleSelect(event) {
     document.getElementsByName(this.props.data.linked)[0].previousSibling.innerText = event.target.value;
   }
+  isValid(val) {
+    const regexp = new RegExp(this.props.data.validation);
+    return regexp.test(val);
+  }
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({
+      value: event.target.value,
+      valid: this.isValid(event.target.value)
+    });
   }
   render() {
     let className = 'functionDataForm__input';
-    if (this.state.disabled) {
-      className += ' disabled';
+    if (!this.state.valid) {
+      className += ' not-valid';
+    }
+    if (!this.state.value) {
+      className += ' empty';
     }
     return (
       <div><label>

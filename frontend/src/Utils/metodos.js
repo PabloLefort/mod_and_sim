@@ -10,7 +10,9 @@ export const euler = function metodoEuler(fn, t0, x0, tf, step, isN) {
         resultado.push({ tn: t, xn: x });
         x += h*evaluate(fn, {t:t, x:x});
 		t += h;
-	}
+    }
+    
+    resultado.push({ tn: t, xn: x });
  
 	return resultado;
 }
@@ -27,7 +29,9 @@ export const eulerMejorado = function metodoEulerMejorado(fn, t0, x0, tf, step, 
         let predictor = x + h * f0;
         x += ((h/2) * (f0 + evaluate(fn, {t: t+h, x: predictor})));
 		t += h;
-	}
+    }
+    
+    resultado.push({ tn: t, xn: x });
  
 	return resultado;
 }

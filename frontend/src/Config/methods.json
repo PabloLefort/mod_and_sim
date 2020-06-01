@@ -3,22 +3,26 @@
         {
             "descriptor": "fn",
             "type": "text",
-            "label": "f(t,x)"
+            "label": "f(t,x)",
+            "validation": "(.|\\s)*"
         },
         {
             "descriptor": "t0",
             "type": "text",
-            "label": "Posición (t0)"
+            "label": "Posición (t0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "x0",
             "type": "text",
-            "label": "Posición (x0)"
+            "label": "Posición (x0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "tf",
             "type": "text",
-            "label": "Posición (tf)"
+            "label": "Posición (tf)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "n_h",
@@ -30,29 +34,34 @@
         {
             "descriptor": "n_h_val",
             "type": "text",
-            "label": "n"
+            "label": "n",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ],
     "euler mejorado": [
         {
             "descriptor": "fn",
             "type": "text",
-            "label": "f(t,x)"
+            "label": "f(t,x)",
+            "validation": "(.|\\s)*"
         },
         {
             "descriptor": "t0",
             "type": "text",
-            "label": "Posición (t0)"
+            "label": "Posición (t0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "x0",
             "type": "text",
-            "label": "Posición (x0)"
+            "label": "Posición (x0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "tf",
             "type": "text",
-            "label": "Posición (tf)"
+            "label": "Posición (tf)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "n_h",
@@ -64,38 +73,51 @@
         {
             "descriptor": "n_h_val",
             "type": "text",
-            "label": "n"
+            "label": "n",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ],
     "runge-kutta": [
         {
             "descriptor": "fn",
             "type": "text",
-            "label": "f(t,x)"
+            "label": "f(t,x)",
+            "validation": "(.|\\s)*"
         },
         {
             "descriptor": "t0",
             "type": "text",
-            "label": "Posición (t0)"
+            "label": "Posición (t0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "x0",
             "type": "text",
-            "label": "Posición (x0)"
+            "label": "Posición (x0)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "tf",
             "type": "text",
-            "label": "Posición (tf)"
+            "label": "Posición (tf)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
             "descriptor": "n",
             "type": "text",
-            "label": "Cantidad de pasos (n)"
+            "label": "Cantidad de pasos (n)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ],
     "rectángulos": [],
     "trapecios": [],
     "simpson": [],
-    "montecarlo": []
+    "montecarlo": [
+        {
+            "descriptor": "fn",
+            "type": "text",
+            "label": "f(t,x)",
+            "validation": "(.|\\s)*"
+        }
+    ]
 }
