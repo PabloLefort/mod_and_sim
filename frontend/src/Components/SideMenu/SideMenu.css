@@ -42,3 +42,35 @@
     margin-right: 25%;
     margin-top: 10%;
 }
+
+.historial {
+    margin-top: 2rem;
+    background: white;
+    padding: .25rem;
+    border: solid 1px black;
+    box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.75);
+    min-width: 80%;
+}
+.historial .historial__titulo {
+    margin: .5rem 0;
+}
+.historial .historial__lista { 
+    list-style-type: none;
+    text-align: left;
+}
+.historial .historial__lista li { 
+    margin: .2rem;
+    padding: .2rem 0;
+    cursor: pointer;
+}
+.historial .historial__lista li label {
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.historial .historial__lista li:nth-child(odd) {
+    background: #efefef;
+}
+.historial .historial__lista li:hover { 
+    background: black;
+    color: white;
+}

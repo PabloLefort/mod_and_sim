@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FunctionDataForm from './FunctionDataForm/FunctionDataForm';
+import Historial from './Historial/Historial';
 import './SideMenu.css';
 import methods from '../../Config/methods.json';
 import { aplicarMetodo } from '../../Actions/data'; 
@@ -16,6 +17,7 @@ class SideMenu extends Component {
       <div className="side-menu">
         <div><h2>Método Seleccionado: {this.props.metodo}</h2></div>
         <FunctionDataForm fields={menuFields} onSubmit={this.onSubmit.bind(this)}></FunctionDataForm>
+        <Historial></Historial>
       </div>
     );
   }

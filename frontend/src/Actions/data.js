@@ -1,28 +1,10 @@
-// actions types is object with the
-// key: GET_DATA_REQUEST -> value: describes the action
 export const Types = {
-    GET_DATA_REQUEST: 'get_data_request',
-    GET_DATA_SUCCESS: 'get_data_success',
-    SELECCIONAR_METODO: 'seleccionar_metodo',
     APLICAR_METODO_REQUEST: 'aplicar_metodo_request',
     APLICAR_METODO_SUCCESS: 'aplicar_metodo_success',
     APLICAR_METODO_FAILURE: 'aplicar_metodo_failure',
+    CONMUTAR_GRAFICO: 'conmutar_grafico',
+    SELECCIONAR_METODO: 'seleccionar_metodo',
 }
-
-// function that returns an object literal 
-export const getDataRequest = () => ({
-    type: Types.GET_DATA_REQUEST
-})
-// key: payload will contain result of the api call
-export const getDataSuccess = ({data}) => ({
-    type: Types.GET_DATA_SUCCESS,
-    payload: { data }
-})
-
-export const seleccionarMetodo = ({metodo}) => ({
-    type: Types.SELECCIONAR_METODO,
-    payload: { metodo }
-})
 
 export const aplicarMetodo = ({ parametros, metodo }) => ({
     type: Types.APLICAR_METODO_REQUEST,
@@ -37,4 +19,14 @@ export const aplicarMetodoSucess = ({ resultado }) => ({
 export const aplicarMetodoFailure = ({ error }) => ({
     type: Types.APLICAR_METODO_FAILURE,
     payload: { error }
+})
+
+export const conmutarGrafico = ({grafico}) => ({
+    type: Types.CONMUTAR_GRAFICO,
+    payload: { grafico }
+})
+
+export const seleccionarMetodo = ({metodo}) => ({
+    type: Types.SELECCIONAR_METODO,
+    payload: { metodo }
 })

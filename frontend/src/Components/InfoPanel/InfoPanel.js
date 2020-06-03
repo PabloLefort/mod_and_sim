@@ -4,7 +4,7 @@ import './InfoPanel.css';
 
 class InfoPanel extends Component {
   render(){
-    const resultado = this.props.resultado;
+    const resultado = this.props.resultado.data;
     return (
       <div className="info-panel">
       <h3>Tabla de Valores</h3>
