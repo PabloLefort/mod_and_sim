@@ -5,7 +5,7 @@ import NavMenu from './Components/NavMenu/NavMenu';
 import SideMenu from './Components/SideMenu/SideMenu';
 import Main from './Components/Main/Main';
 
-import numWorker from './num.worker';
+import { random } from 'mathjs';
 
 class App extends Component {
   constructor(props) {
@@ -15,14 +15,10 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    const worker = new numWorker();
-    worker.postMessage('generar números al azar');
-    worker.addEventListener('message', event => {
-      window.randoms = event.data;
-      this.setState({
-        loading: false
-      })
-    });
+   window.randoms = random([10000000]);
+   this.setState({
+    loading: false
+  })
   }
   render() {
     return (

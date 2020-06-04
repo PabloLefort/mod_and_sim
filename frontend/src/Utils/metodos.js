@@ -3,7 +3,7 @@ import { evaluate, random } from 'mathjs'
 export const euler = function metodoEuler(fn, t0, x0, tf, step, isN, esMejorado = false) {
     let resultado = [];
     let t=t0, x=x0;
-    let h = isN ? ((tf - t0) / parseFloat(step)) : step;
+    let h = isN ? ((tf - t0) / parseFloat(step)) : step; // ver tema parsefloat step
  
 	while ((t<tf && t0<tf) || (t>tf && t0>tf)) {
         resultado.push([t, x]);

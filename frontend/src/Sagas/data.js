@@ -17,7 +17,7 @@ function* aplicarMetodoRequest(action) {
             metodo: post.metodo,
             data: data
         }}));
-    }catch(e) {
+    } catch(e) {
         console.log(e);
         yield put(actions.aplicarMetodoFailure( {error: e} ))
     }

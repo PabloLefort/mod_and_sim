@@ -1,5 +1,4 @@
 export const Types = {
-    AGREGAR_RANDOMS: 'agregar_randoms',
     APLICAR_METODO_REQUEST: 'aplicar_metodo_request',
     APLICAR_METODO_SUCCESS: 'aplicar_metodo_success',
     APLICAR_METODO_FAILURE: 'aplicar_metodo_failure',
@@ -7,11 +6,6 @@ export const Types = {
     LIMPIAR_GRAFICO: 'limpiar_grafico',
     SELECCIONAR_METODO: 'seleccionar_metodo',
 }
-
-export const agregarRandoms = ({ randoms }) => ({
-    type: Types.AGREGAR_RANDOMS,
-    payload: { randoms }
-})
 
 export const aplicarMetodo = ({ parametros, metodo }) => ({
     type: Types.APLICAR_METODO_REQUEST,
