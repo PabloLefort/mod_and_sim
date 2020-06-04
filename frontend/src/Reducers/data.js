@@ -3,7 +3,7 @@ import {Types} from '../Actions/data';
 // create initial state for reducers
 const INIT_STATE = {
     metodo: "euler",
-    resultado: { data: { puntos: [] } },
+    resultado: { data: null },
     temp_grafico: null,
     otros_graficos: [],
     random: []
@@ -44,8 +44,13 @@ export default function data(state = INIT_STATE, action) {
                 metodo: action.payload.metodo
             }
         }
+        case Types.LIMPIAR_GRAFICO: {
+            return {
+                ...state,
+                resultado: action.payload.resultado
+            }
+        }
         case Types.APLICAR_METODO_SUCCESS: {
-            console.log("Resultado -> ", action.payload.resultado)
             return {
                 ...state,
                 resultado: action.payload.resultado

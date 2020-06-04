@@ -7,7 +7,7 @@
 }
 .side-menu .functionDataForm {
     display: grid;
-    grid-auto-rows: 1.5rem;
+    grid-auto-rows: 1.75rem;
     justify-items: end;
     align-items: center;
 }
@@ -41,6 +41,9 @@
 .side-menu .dibujar {
     margin-right: 25%;
     margin-top: 10%;
+}
+.side-menu__limpiar {
+    margin-top: 5px;
 }
 
 .historial {

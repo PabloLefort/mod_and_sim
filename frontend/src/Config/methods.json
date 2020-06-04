@@ -103,9 +103,16 @@
             "validation": "^-?\\d*\\.{0,1}\\d+$"
         },
         {
-            "descriptor": "n",
+            "descriptor": "n_h",
+            "type": "select",
+            "label": "Análisis",
+            "options": [{ "value":"n", "text":"Por cantidad de pasos (n)"}, { "value":"h", "text":"Por tamaño del paso (h)"}],
+            "linked": "n_h_val"
+        },
+        {
+            "descriptor": "n_h_val",
             "type": "text",
-            "label": "Cantidad de pasos (n)",
+            "label": "n",
             "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ],

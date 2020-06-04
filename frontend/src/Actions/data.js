@@ -4,6 +4,7 @@ export const Types = {
     APLICAR_METODO_SUCCESS: 'aplicar_metodo_success',
     APLICAR_METODO_FAILURE: 'aplicar_metodo_failure',
     CONMUTAR_GRAFICO: 'conmutar_grafico',
+    LIMPIAR_GRAFICO: 'limpiar_grafico',
     SELECCIONAR_METODO: 'seleccionar_metodo',
 }
 
@@ -30,6 +31,11 @@ export const aplicarMetodoFailure = ({ error }) => ({
 export const conmutarGrafico = ({grafico}) => ({
     type: Types.CONMUTAR_GRAFICO,
     payload: { grafico }
+})
+
+export const limpiarGrafico = ({ resultado }) => ({
+    type: Types.LIMPIAR_GRAFICO,
+    payload: { resultado }
 })
 
 export const seleccionarMetodo = ({metodo}) => ({

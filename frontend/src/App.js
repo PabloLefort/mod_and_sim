@@ -16,7 +16,7 @@ class App extends Component {
   }
   componentDidMount() {
     const worker = new numWorker();
-    worker.postMessage('empezar');
+    worker.postMessage('generar números al azar');
     worker.addEventListener('message', event => {
       window.randoms = event.data;
       this.setState({
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        {this.state.loading ? <div>Cargando...</div> : <React.Fragment><header className="app-header">
+        {this.state.loading ? <div className="loader"></div> : <React.Fragment><header className="app-header">
           <NavMenu />
         </header>
         <main className="app-main">

@@ -7,91 +7,106 @@ import * as functionPlot from 'function-plot';
 class Plotter extends Component {
   constructor() {
     super();
-    this.plotConfig = {
+    this.graficoConfig = {
       target: '#graph',
       tip: {
-        xLine: true,    // dashed line parallel to y = 0
-        yLine: true,    // dashed line parallel to x = 0
+        xLine: true,
+        yLine: true
       },
       width: 580,
       height: 400,
-      grid: false,
-      data: [],
-      annotations: [],
+      grid: true
     };
     this.graphDOM = new React.createRef();
     this.resetearGrafico = this.resetearGrafico.bind(this)
   }
 
-  nuevoPloteo(data) {
-    let puntos = [];
-    for (let i = 0; i < data.length; i++) {
-      puntos.push([data[i][0], data[i][1]]);
-    }
-    return {
-      fnType: 'points',
-      graphType: 'polyline',
-      points: puntos
-    }
-  }
 
   resetearGrafico() {
     if (this.graphDOM.current) {
       this.graphDOM.current.innerHTML = "";
     }
   }
-  
+
+  generarDiferencial(data) {
+    return {
+      fnType: 'points',
+      graphType: 'polyline',
+      points: data.puntos
+    }
+  }
+
+  generarIntegracion(data) {
+    return {
+      fn: data.fn,
+      range: [data.a, data.b],
+      closed: true
+    }
+  }
+  generarScatter(puntos, color) {
+    return {
+      fnType: 'points',
+      points: puntos,
+      graphType: 'scatter', 
+      color: color
+    }
+  }
+
+  generarSecundario(data) {
+    switch (data.tipo) {
+      case 'diferencial':
+        return this.generarDiferencial(data);
+      case 'integracion':
+        return this.generarIntegracion(data);
+      default:
+        return {};
+    }
+  }
+
+  generarGrafico(data, otros) {
+    let graficoConfig = { ...this.graficoConfig };
+    switch (data.tipo) {
+      case 'diferencial':
+        let t0 = data.puntos[0][0], tf = data.puntos[data.puntos.length - 1][0];
+        Object.assign(graficoConfig, {
+          xAxis: {label: 't'},
+          yAxis: {label: 'x'},
+          annotations: [
+            { x: t0, text: `t0 = ${t0}`},
+            { x: tf, text: `tf = ${tf}`}
+          ],
+          data: [this.generarDiferencial(data)]
+        })
+        break;
+      case 'integracion':
+        let fnData = [this.generarIntegracion(data)];
+        if (data.aciertos.length + data.yerros.length <= 15000) { // Pongo el tope en 5000 para que no se ralentize mucho
+          fnData.push(this.generarScatter(data.aciertos, 'green'), this.generarScatter(data.yerros, 'red'));
+        }
+        Object.assign(graficoConfig, {
+          title: 'Área ~ ' + data.area,
+          xAxis: {domain: [data.a, data.b]},
+          yAxis: {domain: [0, data.ymax]},
+          annotations: [{ x: data.a, text: `x = ${data.a}`}, { x: data.b, text: `x = ${data.b}`}, { y: data.ymax, text: `y = ${data.ymax}`}],
+          data: fnData
+        })
+        break;
+      default:
+        break;
+    }
+    if (otros.length) {
+      otros.map(adicional => graficoConfig.data.push(this.generarSecundario(adicional.data)));
+    }
+    return graficoConfig;
+  }
 
 	render() {
-    this.resetearGrafico();
-    let otros = this.props.otros_graficos;
-
-    let plot = { ...this.plotConfig };
-    if (this.props.resultado.data.tipo === 'integracion') {
-      let integracion = this.props.resultado.data;
-      let data = [{
-        fn: integracion.fn,
-        range: [integracion.a, integracion.b],
-        closed: true
-      }];
-      plot.annotations.push({ x: integracion.a, text: `x = ${integracion.a}`});
-      plot.annotations.push({ x: integracion.b, text: `x = ${integracion.b}`});
-      plot.annotations.push({ y: integracion.ymax, text: `y = ${integracion.ymax}`});
-      if (integracion.aciertos.length + integracion.yerros.length <= 5000) {
-        data.push({
-          points: integracion.aciertos,
-          fnType: 'points',
-          graphType: 'scatter', color: 'green'
-        });
-        data.push({
-          points: integracion.yerros,
-          fnType: 'points',
-          graphType: 'scatter', color: 'red'
-        });
-      }
-      otros.map(adicional => data.push(this.nuevoPloteo(adicional.data.puntos)));
-      Object.assign(plot, {
-        title: 'Área Aproximada: ' + integracion.area,
-        xAxis: {domain: [integracion.a, integracion.b]},
-        data: data
-      });
-      functionPlot(plot)
-    } else {
-      let data = [this.nuevoPloteo(this.props.resultado.data.puntos)];
-      otros.map(adicional => data.push(this.nuevoPloteo(adicional.data.puntos)));
-      Object.assign(plot, {
-        data: data,
-        yAxis: {label: 'x',},
-        xAxis: {label: 't',},
-      });
-      if (this.props.resultado.data.puntos.length) {
-        //let t0 = points[0][0], tf = points[points.length - 1][0];
-        //plot.annotations.push({ x: t0, text: `t0 = ${t0}`});
-        //plot.annotations.push({ x: tf, text: `tf = ${tf}`});
-        functionPlot(plot)
+    if (this.props.resultado.data !== null) {
+      this.resetearGrafico();
+      if(this.props.resultado.data !== 'clear') {
+        functionPlot(this.generarGrafico(this.props.resultado.data, this.props.otros_graficos));
       }
     }
-
 
 		return (
 		<div className="graph-container">

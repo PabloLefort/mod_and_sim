@@ -4,19 +4,18 @@ import * as api from '../Api/data';
 
 function* aplicarMetodoRequest(action) {
     try {
-        const formdata = action.payload.parametros;
+        let descripcion = '';
         let post = { metodo: action.payload.metodo };
-        let description = '';
-        for (let pair of formdata.entries()) {
-            post[pair[0]] = pair[1];
-            description += pair[1] + ', ';
-        }
+        action.payload.parametros.forEach((value, key) => { 
+            post[key] = value;
+            descripcion += value + ', ';
+        });
         const data = yield call(api.aplicarMetodo, { post });
         yield put(actions.aplicarMetodoSucess({ resultado: {
-            token: (description.replace(', ', '') + post.metodo).replace(/\s/g,''), // Genero un token para que sirva de identificador en el historial
-            description: description.substring(0, description.length - 2),
+            token: (descripcion.replace(', ', '') + post.metodo).replace(/\s/g,''), // Genero un token para que sirva de identificador en el historial
+            description: descripcion.substring(0, descripcion.length - 2),
             metodo: post.metodo,
-            data: data.data
+            data: data
         }}));
     }catch(e) {
         console.log(e);

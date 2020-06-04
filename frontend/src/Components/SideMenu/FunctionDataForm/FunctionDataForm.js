@@ -26,7 +26,7 @@ class FunctionDataForm extends Component {
         { this.props.fields ? this.props.fields.map((item, index) => 
             (<FunctionDataFormField key={index} data={item} />)
           ) : null }
-        <input type="submit" value="Ver Solución" />
+        <input type="submit" className="button" value="Ver Solución" />
         </form>
         <div ref={this.errormsg} className="functionDataForm__validacion hidden">
           <p className="functionDataForm__validacion-msg">Verifique que los valores ingresados sean correctos.</p>

@@ -4,7 +4,7 @@ import FunctionDataForm from './FunctionDataForm/FunctionDataForm';
 import Historial from './Historial/Historial';
 import './SideMenu.css';
 import methods from '../../Config/methods.json';
-import { aplicarMetodo } from '../../Actions/data'; 
+import { aplicarMetodo, limpiarGrafico } from '../../Actions/data'; 
 
 
 class SideMenu extends Component {
@@ -17,6 +17,7 @@ class SideMenu extends Component {
       <div className="side-menu">
         <div><h2>Método Seleccionado: {this.props.metodo}</h2></div>
         <FunctionDataForm fields={menuFields} onSubmit={this.onSubmit.bind(this)}></FunctionDataForm>
+        <button className="side-menu__limpiar" onClick={() => this.props.limpiarGrafico( { resultado: { data: 'clear' } })}>Limpiar</button>
         <Historial></Historial>
       </div>
     );
@@ -28,4 +29,4 @@ const mapStateToProps = (state) => {
     metodo: state.data.metodo
   }
 }
-export default connect(mapStateToProps, { aplicarMetodo })(SideMenu)
+export default connect(mapStateToProps, { aplicarMetodo, limpiarGrafico })(SideMenu)
