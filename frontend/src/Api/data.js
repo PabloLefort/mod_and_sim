@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { euler, eulerMejorado, rungeKutta } from '../Utils/metodos.js'
+import { euler, eulerMejorado, rungeKutta, montecarlo } from '../Utils/metodos.js'
 
 ////////// Mock adapter in the meantime //////////
 import MockAdapter  from 'axios-mock-adapter';
@@ -14,11 +14,16 @@ mock.onPost().reply((config) => {
             resultado = euler(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');
             break;
         case 'euler mejorado':
-            resultado = eulerMejorado(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');
+            // resultado = eulerMejorado(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n');
+            resultado = euler(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n_h_val), values.n_h === 'n', true);
             break;
         case 'runge-kutta':
             // fn, t0, x0, tf, n
             resultado = rungeKutta(values.fn, toNum(values.t0), toNum(values.x0), toNum(values.tf), toNum(values.n));
+            break;
+        case 'montecarlo':
+            // fn, a, b, ymin, ymax, n
+            resultado = montecarlo(values.fn, toNum(values.a), toNum(values.b), toNum(values.ymax), toNum(values.n));
             break;
         default:
             resultado = euler('2t', -1, 0, 3, 0.25);

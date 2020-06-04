@@ -3,14 +3,21 @@ import {Types} from '../Actions/data';
 // create initial state for reducers
 const INIT_STATE = {
     metodo: "euler",
-    resultado: { data: [] },
+    resultado: { data: { puntos: [] } },
     temp_grafico: null,
-    otros_graficos: []
+    otros_graficos: [],
+    random: []
 }
 
 // reducer function to transform state
 export default function data(state = INIT_STATE, action) {
     switch(action.type) {
+        case Types.AGREGAR_RANDOMS: { 
+            return {
+                ...state,
+                random: action.payload.randoms
+            }
+        }
         case Types.CONMUTAR_GRAFICO: {
             let grafico = action.payload.grafico,
                 adicionales = state.otros_graficos;

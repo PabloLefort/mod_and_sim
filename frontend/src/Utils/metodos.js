@@ -1,39 +1,21 @@
-import { evaluate } from 'mathjs'
+import { evaluate, random } from 'mathjs'
 
-export const euler = function metodoEuler(fn, t0, x0, tf, step, isN) {
+export const euler = function metodoEuler(fn, t0, x0, tf, step, isN, esMejorado = false) {
     let resultado = [];
     let t=t0, x=x0;
     let h = isN ? ((tf - t0) / parseFloat(step)) : step;
  
 	while ((t<tf && t0<tf) || (t>tf && t0>tf)) {
-        console.log("\t" + t + "\t|\t" + x);
-        resultado.push({ tn: t, xn: x });
-        x += h*evaluate(fn, {t:t, x:x});
-		t += h;
-    }
-    
-    resultado.push({ tn: t, xn: x });
- 
-	return resultado;
-}
-
-export const eulerMejorado = function metodoEulerMejorado(fn, t0, x0, tf, step, isN) {
-    let resultado = [];
-    let t=t0, x=x0;
-    let h = isN ? ((tf - t0) / parseFloat(step)) : step;
- 
-	while ((t<tf && t0<tf) || (t>tf && t0>tf)) {
-        console.log("\t" + t + "\t|\t" + x);
-        resultado.push({ tn: t, xn: x });
+        resultado.push([t, x]);
         let f0 = evaluate(fn, {t:t, x:x});
-        let predictor = x + h * f0;
-        x += ((h/2) * (f0 + evaluate(fn, {t: t+h, x: predictor})));
+        let predictor = h * f0;
+        x += esMejorado ? ((h/2) * (f0 + evaluate(fn, {t: t+h, x: x + predictor}))): predictor;
 		t += h;
     }
     
-    resultado.push({ tn: t, xn: x });
+    resultado.push([t, x]);
  
-	return resultado;
+	return { tipo: 'diferencial', puntos: resultado };
 }
 
 export const rungeKutta = function metodoRungeKutta(fn, t0, x0, tf, n) {
@@ -54,9 +36,32 @@ export const rungeKutta = function metodoRungeKutta(fn, t0, x0, tf, n) {
             vt[i] = t = t0 + i * h
             vx[i] = x = x + (k1 + k2 + k2 + k3 + k3 + k4) / 6;
             
-            resultado.push({ tn: vt[i], xn: vx[i] });
+            resultado.push([vt[i], vx[i]]);
         }
     }
     rk4(fn, t0, x0, tf, n);
-    return resultado;
+    return { tipo: 'diferencial', puntos: resultado };
+}
+
+export const montecarlo = function metodoMontecarlo(fn, a, b, Ymax, n) {
+
+    let aciertos = [];
+    let yerros = [];
+    let x, y, rand1, rand2;
+    let bmenosa = b - a;
+
+    for (let i = 0; i < n; i++) {
+        rand1 = window.randoms[i] || random();
+        rand2 = window.randoms[i+1] || random();
+        x = a + rand1 * bmenosa;
+        y = rand2 * Ymax;
+        
+        if (y <= evaluate(fn, { x: x })) {
+            aciertos.push([x,y]);
+        } else {
+            yerros.push([x,y]);
+        }
+    }
+    let areaApprox = (aciertos.length / n) * bmenosa * Ymax;
+    return { tipo: 'integracion', fn: fn, a: a, b: b, ymax: Ymax, area: areaApprox.toFixed(4), aciertos: aciertos, yerros: yerros};
 }

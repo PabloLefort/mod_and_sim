@@ -4,7 +4,7 @@ import './InfoPanel.css';
 
 class InfoPanel extends Component {
   render(){
-    const resultado = this.props.resultado.data;
+    const resultado = this.props.resultado.data.puntos;
     return (
       <div className="info-panel">
       <h3>Tabla de Valores</h3>
@@ -21,8 +21,8 @@ class InfoPanel extends Component {
             {resultado ? resultado.map((row, i) => 
             <tr key={i}>
               <td>{i}</td>
-              <td>{parseFloat(row.tn).toFixed(3)}</td>
-              <td>{parseFloat(row.xn).toFixed(3)}</td>
+              <td>{parseFloat(row[0]).toFixed(3)}</td>
+              <td>{parseFloat(row[1]).toFixed(3)}</td>
             </tr>
             ) : null }
           </tbody>

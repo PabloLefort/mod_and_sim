@@ -109,15 +109,36 @@
             "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ],
-    "rectángulos": [],
-    "trapecios": [],
-    "simpson": [],
     "montecarlo": [
         {
             "descriptor": "fn",
             "type": "text",
-            "label": "f(t,x)",
+            "label": "f(x)",
             "validation": "(.|\\s)*"
+        },
+        {
+            "descriptor": "a",
+            "type": "text",
+            "label": "a",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
+        },
+        {
+            "descriptor": "b",
+            "type": "text",
+            "label": "b",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
+        },
+        {
+            "descriptor": "ymax",
+            "type": "text",
+            "label": "ymax",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
+        },
+        {
+            "descriptor": "n",
+            "type": "text",
+            "label": "Muestras (n)",
+            "validation": "^-?\\d*\\.{0,1}\\d+$"
         }
     ]
 }
